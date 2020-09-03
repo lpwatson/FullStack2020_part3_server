@@ -24,6 +24,11 @@ let persons = [
     name: "Mary Poppendieck",
     number: "39-23-6423122",
     id: 4
+  },
+  {
+    name: "Manny Poppe",
+    number: "39-23-64231234",
+    id: 5
   }
 ]
 
@@ -47,6 +52,12 @@ app.get('/info', (request, response) => {
     `<p>Phonebook has info for ${persons.length} people<p>
      <p>${new Date()}<p>`
     );
+})
+
+app.delete('/api/persons/:id', (request, response) => {
+  const id = Number(request.params.id)
+  persons = persons.filter(person => person.id !== id)
+  response.status(204).end()
 })
 
 const PORT = 3001
